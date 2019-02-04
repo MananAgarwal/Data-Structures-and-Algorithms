@@ -4,7 +4,7 @@
 
 int main()
 {
-    int ramSize = 12; //51
+    int ramSize = 300; //should be divisible by 3
     int freeSize = ramSize / 3;
 
     int RAM[ramSize];

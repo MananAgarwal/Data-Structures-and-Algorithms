@@ -63,7 +63,7 @@ void insertNewElement(int RAM[], int LISTHEADS[], int FREE[], int freeSize, int 
     while (next != -1 && RAM[next] <= key)
     {
         if (RAM[next + 1] == -1)
-        { //i.e. we key is the largest value in the list
+        { //i.e. key is the largest value in the list
             RAM[FREE[*freeTop]] = key;
             RAM[FREE[*freeTop] + 1] = -1;
             RAM[FREE[*freeTop] + 2] = next;
@@ -81,11 +81,16 @@ void insertNewElement(int RAM[], int LISTHEADS[], int FREE[], int freeSize, int 
     RAM[FREE[*freeTop]] = key;
     RAM[FREE[*freeTop] + 1] = next;
     RAM[FREE[*freeTop] + 2] = RAM[next + 2];
+
     if (RAM[next + 2] == -1)
     {
         LISTHEADS[listNumber - 1] = FREE[*freeTop];
     }
-    RAM[next + 2] = RAM[FREE[*freeTop]];
+    else
+    {
+        RAM[RAM[next + 2] + 1] = FREE[*freeTop]; //updating in prev's next
+    }
+    RAM[next + 2] = FREE[*freeTop]; //updating in next's prev
 
     //update freetop
     FREE[*freeTop] = -1;

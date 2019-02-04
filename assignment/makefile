@@ -1,2 +1,3 @@
-run: assignment.c driver.c assignment.h
-	gcc assignment.c driver.c assignment.h
+all: 
+	gcc assignment.c driver.c -o assignment
+	./assignment
